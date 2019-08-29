@@ -1,6 +1,10 @@
 <link rel="stylesheet" href="form.css" type="text/css">
 
 <?php
+session_start();
+if(!isset($_SESSION['username'])) {
+        header("location: panel.php");
+    }
 /* Attempt MySQL server connection. Assuming you are running MySQL
 	server with default setting (user 'root' with no password) */
 	$link = mysqli_connect("localhost", "root", "", "kyc_project");
@@ -24,6 +28,7 @@
 
 <?php
 
+
 //SQL Query for fetching the data
 $q = "SELECT id, username, phone, email, gender from client WHERE status = 1";
 $query = mysqli_query($link,$q);
@@ -43,4 +48,11 @@ while($res = mysqli_fetch_array($query)){
 }
 ?>
 </table>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php" style="color: white; font-size: 40px;">Logout</a>
+              </li>   
+          </ul>
+        </div> 
  

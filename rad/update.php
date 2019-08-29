@@ -1,6 +1,9 @@
 <?php
 	//connnection
-
+ session_start();
+ if(!isset($_SESSION['username'])) {
+        header("location: panel.php");
+    }
 	
 	$host = "localhost";
 	$dbUsername = "root";

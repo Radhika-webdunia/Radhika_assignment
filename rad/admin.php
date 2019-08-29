@@ -7,22 +7,28 @@
             echo "MySql Error: " . mysqli_connect_error();
         }
 
-    $query=mysqli_query($con,"SELECT * FROM admin WHERE username='$_POST[username]' && password='$_POST[password]'");
-    $count=mysqli_num_rows($query);
-    $row=mysqli_fetch_array($query);
+        $query=mysqli_query($con,"SELECT * FROM admin WHERE username='$_POST[username]' && password='$_POST[password]'");
+        $count=mysqli_num_rows($query);
+        $row=mysqli_fetch_array($query);
 
     if ($count==1)
-    {
-        session_start();
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['password'] = $_POST['password'];
-        header("location: panel.php");
-    }else
-    {
-        echo "Invalid username or password";
-    }   
+        {
+            session_start();
+            $message="";
 
-    mysqli_close($con);
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['password'] = $_POST['password'];
+          
+    }
+    else
+        {
+            echo "Invalid username or password";
+        }   
+        if(isset($_SESSION['username'])) {
+        header("location: panel.php");
+    }
+
+        mysqli_close($con);
   }
    
     ?>
@@ -59,6 +65,9 @@
                     <div>
                         <input name="password" id="password" type="password" class="demo-input-box" required>
                     </div>
+                        <div class="form-group" style="text-align: center;">
+                            <span class="help-block" style="display: inline-block;"></span>
+                        </div>
                 </div>
                 <div class="field-group">
                 <div><input type="checkbox" name="remember" id="remember"
