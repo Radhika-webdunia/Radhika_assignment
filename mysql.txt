@@ -1,0 +1,5 @@
+My sql assignment queries:-
+2.select user_name,p_name from user join product on user.p_id=product.p_id where c_id=1 or c_id=2
+4.SELECT SUM(p_price) FROM product
+6.select * from product where p_discount>20
+7.SELECT p_id, p_name FROM product WHERE p_stock = (SELECT MIN(p_stock) FROM product);
